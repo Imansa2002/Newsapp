@@ -15,7 +15,7 @@ public class SplashActivity extends AppCompatActivity {
 
         // Show splash screen for 3 seconds
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, SignupActivity.class);
             startActivity(intent);
             finish();
         }, 3000); // 3000 milliseconds = 3 seconds
