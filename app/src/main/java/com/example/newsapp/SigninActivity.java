@@ -5,9 +5,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.example.newsapp.SignupActivity;
 
 
 import java.util.Objects;
@@ -26,7 +27,7 @@ public class SigninActivity extends AppCompatActivity {
         usernameField = findViewById(R.id.usernameField);
         passwordField = findViewById(R.id.passwordField);
         Button loginButton = findViewById(R.id.loginButton);
-        TextView btnSignupTab = findViewById(R.id.btnSignupTab);
+        MaterialButton btnSignupTab = findViewById(R.id.btnSignupTab);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
