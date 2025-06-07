@@ -117,9 +117,9 @@
                     android:textColorHint="#757575" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Sign Up Button -->
+            <!-- Log in Button -->
             <Button
-                android:id="@+id/signupButton"
+                android:id="@+id/loginButton"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="64dp"
