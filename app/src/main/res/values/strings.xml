@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">News app</string>
+    <string name="app_name">my news app</string>
+    <string name="tech_feed">UOC | FOT</string>
+    <string name="app_logo">App Logo</string>
 </resources>
