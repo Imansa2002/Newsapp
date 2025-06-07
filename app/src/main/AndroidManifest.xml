@@ -12,15 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NewsApp"
         tools:targetApi="31">
+
+
+        <!-- SignupActivity is the launcher -->
         <activity
-            android:name=".MainActivity"
+            android:name=".SignupActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Other activities -->
+        <activity android:name=".SigninActivity" />
+        <activity android:name=".MainActivity" />
+
     </application>
 
 </manifest>
