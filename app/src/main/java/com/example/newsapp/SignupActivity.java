@@ -58,8 +58,8 @@ public class SignupActivity extends AppCompatActivity {
         //FirebaseAuth fAuth = FirebaseAuth.getInstance();
 
         //if(fAuth.getCurrentUser()!=null) {
-         //   startActivity(new Intent(getApplicationContext(), MainActivity.class));
-           // finish();
+        //   startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        // finish();
         //}
 
         // ✅ Initialize FirebaseAuth
@@ -101,3 +101,6 @@ public class SignupActivity extends AppCompatActivity {
         }
     }
 }
+
+
+
