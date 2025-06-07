@@ -1,6 +1,5 @@
 package com.example.newsapp;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -56,12 +55,12 @@ public class SignupActivity extends AppCompatActivity {
         signupButton = findViewById(R.id.signupButton);
         btnLoginTab = findViewById(R.id.btnLoginTab);
 
-        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        //FirebaseAuth fAuth = FirebaseAuth.getInstance();
 
-        if(fAuth.getCurrentUser()!=null) {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            finish();
-        }
+        //if(fAuth.getCurrentUser()!=null) {
+         //   startActivity(new Intent(getApplicationContext(), MainActivity.class));
+           // finish();
+        //}
 
         // ✅ Initialize FirebaseAuth
         mAuth = FirebaseAuth.getInstance();
