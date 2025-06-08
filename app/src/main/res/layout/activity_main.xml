@@ -1,19 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@drawable/news_bg">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/desc_back"
+        android:src="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck,RedundantDescriptionCheck" />
+
+    <ImageView
+        android:id="@+id/newspaper_icon"
+        android:layout_width="28dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="36dp"
+        android:src="@drawable/newspaper"
+        android:contentDescription="@string/desc_newspaper"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/news_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="38dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/browse_news"
+        android:textColor="#FA0B0000"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/newspaper_icon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/news_title"
+        android:layout_marginTop="75dp">
+
+        <LinearLayout
+            android:id="@+id/linearLayoutInsideScroll"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            tools:ignore="VisualLintBounds">
+
+            <!-- New Year Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardNewYear"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <ImageButton
+                    android:id="@+id/imageNewYear"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/newyr"
+                    android:contentDescription="@string/desc_newyr"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <View
+                    android:id="@+id/overlayNewYear"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#77000000"
+                    android:visibility="gone" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Siyo Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardSiyo"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <ImageButton
+                    android:id="@+id/imageSiyo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/siyo"
+                    android:contentDescription="@string/desc_siyo"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <View
+                    android:id="@+id/overlaySiyo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#77000000"
+                    android:visibility="gone" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Techbash Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardTechbash"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <ImageButton
+                    android:id="@+id/imageTechbash"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/techbash"
+                    android:contentDescription="@string/desc_techbash"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <View
+                    android:id="@+id/overlayTechbash"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#77000000"
+                    android:visibility="gone" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Gameday Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardGameday"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <ImageButton
+                    android:id="@+id/imageGameday"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/gameday"
+                    android:contentDescription="@string/desc_gameday"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <View
+                    android:id="@+id/overlayGameday"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#77000000"
+                    android:visibility="gone" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Nenayathra Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardNenayathra"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <ImageButton
+                    android:id="@+id/imageNenayathra"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/nenayathra"
+                    android:contentDescription="@string/desc_nenayathra"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <View
+                    android:id="@+id/overlayNenayathra"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#77000000"
+                    android:visibility="gone" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Workshop Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardWorkshop"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <ImageButton
+                    android:id="@+id/imageWorkshop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/workshop"
+                    android:contentDescription="@string/desc_workshop"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <View
+                    android:id="@+id/overlayWorkshop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#77000000"
+                    android:visibility="gone" />
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </HorizontalScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

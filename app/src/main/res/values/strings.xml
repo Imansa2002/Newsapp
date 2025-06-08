@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">News app</string>
+    <string name="desc_back">Back button icon</string>
+    <string name="browse_news">Browse News</string>
+    <string name="desc_newspaper">Newspaper icon</string>
+    <string name="desc_newyr">New year event image</string>
+    <string name="desc_siyo">Siyo event image</string>
+    <string name="desc_techbash">Tech Bash news image</string>
+    <string name="desc_gameday">Gameday news image</string>
+    <string name="desc_nenayathra">Nenayathra news image</string>
+    <string name="desc_workshop">Workshop event image</string>
+    <string name="desc_slider_image">Slider image</string>
+
 </resources>
