@@ -3,6 +3,7 @@ package com.example.newsapp;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -56,23 +57,25 @@ public class MainActivity extends AppCompatActivity {
         linearLayout = findViewById(R.id.linearLayoutInsideScroll);
 
         if (horizontalScrollView != null && linearLayout != null) {
-            horizontalScrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-                int scrollViewCenterX = scrollX + horizontalScrollView.getWidth() / 2;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                horizontalScrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+                    int scrollViewCenterX = scrollX + horizontalScrollView.getWidth() / 2;
 
-                for (int i = 0; i < linearLayout.getChildCount(); i++) {
-                    View child = linearLayout.getChildAt(i);
-                    int childCenterX = child.getLeft() + child.getWidth() / 2;
-                    int distance = Math.abs(scrollViewCenterX - childCenterX);
+                    for (int i = 0; i < linearLayout.getChildCount(); i++) {
+                        View child = linearLayout.getChildAt(i);
+                        int childCenterX = child.getLeft() + child.getWidth() / 2;
+                        int distance = Math.abs(scrollViewCenterX - childCenterX);
 
-                    float maxDistance = horizontalScrollView.getWidth() / 2f;
-                    float scale = 1f - (distance / maxDistance) * 0.3f;
-                    if (scale < 0.7f) scale = 0.7f;
+                        float maxDistance = horizontalScrollView.getWidth() / 2f;
+                        float scale = 1f - (distance / maxDistance) * 0.3f;
+                        if (scale < 0.7f) scale = 0.7f;
 
-                    child.setScaleX(scale);
-                    child.setScaleY(scale);
-                    child.setAlpha(scale);
-                }
-            });
+                        child.setScaleX(scale);
+                        child.setScaleY(scale);
+                        child.setAlpha(scale);
+                    }
+                });
+            }
 
             horizontalScrollView.post(() -> {
                 int scrollX = horizontalScrollView.getScrollX();

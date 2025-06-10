@@ -12,7 +12,7 @@
         android:id="@+id/back_button"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/desc_back"
@@ -55,7 +55,9 @@
         app:layout_constraintTop_toBottomOf="@id/news_title"
         android:layout_marginTop="75dp">
 
+
         <LinearLayout
+
             android:id="@+id/linearLayoutInsideScroll"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -238,4 +240,105 @@
 
         </LinearLayout>
     </HorizontalScrollView>
+
+    <ImageButton
+        android:id="@+id/hamburger"
+        android:layout_width="25dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="13dp"
+        android:background="@android:color/transparent"
+        android:importantForAccessibility="no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/hamburger"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <LinearLayout
+        android:id="@+id/bottom_nav_buttons"
+        android:layout_width="404dp"
+        android:layout_height="104dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Sport -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="10dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/card_gradient">
+
+                <ImageButton
+                    android:id="@+id/sport_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="83dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="sport"
+                    android:src="@drawable/sport"
+                    tools:ignore="HardcodedText,VisualLintBounds" />
+            </FrameLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Education -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/card_gradient">
+
+                <ImageButton
+                    android:id="@+id/education_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="81dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/education"
+                    android:src="@drawable/academic"
+                    tools:ignore="VisualLintBounds" />
+            </FrameLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Event -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/card_gradient">
+
+                <ImageButton
+                    android:id="@+id/global_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="86dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/event"
+                    android:src="@drawable/event"
+                    tools:ignore="VisualLintBounds" />
+            </FrameLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

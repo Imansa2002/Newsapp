@@ -10,5 +10,12 @@
     <string name="desc_nenayathra">Nenayathra news image</string>
     <string name="desc_workshop">Workshop event image</string>
     <string name="desc_slider_image">Slider image</string>
+    <string name="app_logo">App Logo</string>
+    <string name="tech_feed">Tech Feed</string>
+
+    <string name="news_description">news description.</string>
+    <string name="education">Education</string>
+    <string name="event">event</string>
+    <string name="news_title">News Title</string>
 
 </resources>

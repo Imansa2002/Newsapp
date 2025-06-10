@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -33,6 +34,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation(libs.firebase.database)
 
     // You can add test dependencies here if needed
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
