@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">News app</string>
+    <string name="dev_info"><u>DEV INFO.</u></string>
+    <string name="exit">Exit</string>
+    <string name="version_v2_1_0">Version : v2.1.0</string>
+    <string name="personal_statement_this_app_was_created_to_stay_updated_with_the_latest_faculty_announcements_events_and_academic_news_it_helps_to_stay_informed_and_connected"><b>Personal Statement : </b>This app was created to stay updated with the latest faculty announcements, events, and academic news. It helps to stay informed and connected.</string>
+    <string name="student_number_2022t01591"><b>Student Number : </b>2022t01591</string>
+    <string name="department_ict"><b>Department : </b>ICT</string>
+    <string name="name_imansa_gayathmi"><b>Name : </b>Imansa Gayathmi</string>
+    <string name="desc_back" />
 </resources>
