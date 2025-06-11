@@ -8,7 +8,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.LayoutInflater;
 import android.util.Log;
-
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -32,15 +31,12 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 
-// import com.example.newsapp.dev.DevInfoActivity;
-// import com.example.newsapp.user.UserInfoActivity;
-
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private HorizontalScrollView horizontalScrollView;
     private LinearLayout linearLayout, newsContentLayout;
     private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle drawerToggle; // No constructor, just declare
+    private ActionBarDrawerToggle drawerToggle;
 
     @SuppressLint({"MissingInflatedId", "ClickableViewAccessibility"})
     @Override
