@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.example.newsapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.newsapp"
-        minSdk = 21
-        targetSdk = 34
+        minSdk = 23
+        compileSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -36,8 +36,8 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
-    implementation("com.squareup.picasso:picasso:2.8")
-
+    implementation("com.squareup.picasso:picasso:2.71828")
+    implementation("com.google.firebase:firebase-auth:22.3.1")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
