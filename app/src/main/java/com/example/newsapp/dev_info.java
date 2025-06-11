@@ -47,6 +47,6 @@ public class dev_info extends AppCompatActivity {
         });
     }
 
-    private void setScaleOnTouch(ImageButton backButton) {
+    private void setScaleOnTouch(ImageButton ignoredBackButton) {
     }
 }
