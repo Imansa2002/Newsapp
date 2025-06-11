@@ -1,5 +1,33 @@
 <resources>
     <string name="app_name">News app</string>
+    <string name="desc_back">Back button icon</string>
+    <string name="browse_news">Browse News</string>
+    <string name="desc_newspaper">Newspaper icon</string>
+    <string name="desc_newyr">New year event image</string>
+    <string name="desc_siyo">Siyo event image</string>
+    <string name="desc_techbash">Tech Bash news image</string>
+    <string name="desc_gameday">Gameday news image</string>
+    <string name="desc_nenayathra">Nenayathra news image</string>
+    <string name="desc_workshop">Workshop event image</string>
+    <string name="desc_slider_image">Slider image</string>
+    <string name="app_logo">App Logo</string>
+    <string name="tech_feed">Tech Feed</string>
+
+    <string name="news_description">news description.</string>
+    <string name="education">Education</string>
+    <string name="event">event</string>
+    <string name="news_title">News Title</string>
+    <string name="description">This is the description of the news item. It gives more details.</string>
+
+    <string name="open_nav">Open Navigation Drawer</string>
+    <string name="close_nav">Close Navigation Drawer</string>
+    <string name="user_info">User Info.</string>
+    <string name="logout">Logout</string>
+    <string name="devinfo">DevInfo.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="devinfo_fragment">Devinfo Fragment</string>
+
     <string name="sign_up2">Sign Up</string>
     <string name="logo">Logo</string>
     <string name="log_in">Log In</string>
@@ -8,6 +36,4 @@
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="email">Email</string>
-    <string name="tech_feed">UOC | FOT</string>
-    <string name="app_logo">App Logo</string>
 </resources>
