@@ -36,8 +36,8 @@
         tools:ignore="VisualLintBounds">
 
         <LinearLayout
-            android:layout_width="346dp"
-            android:layout_height="646dp"
+            android:layout_width="350dp"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="24dp"
             tools:ignore="VisualLintBounds">
