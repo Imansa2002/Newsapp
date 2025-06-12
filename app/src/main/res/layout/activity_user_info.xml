@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_info"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="20dp"
+    android:background="@drawable/userinfo_bg">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/userInfoTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_info"
+        android:paddingTop="40dp"
+        android:fontFamily="@font/abrilfatface_regular"
+        android:textSize="26sp"
+        android:textColor="#000000"
+        android:layout_marginTop="0dp" />
+
+    <!-- Profile Section grouped in profile_layout -->
+    <LinearLayout
+        android:id="@+id/profile_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="30dp">
+
+        <!-- Circular Profile Image with CardView -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/profileImageCard"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="75dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#B0B0B0">
+
+            <ImageView
+                android:id="@+id/profileImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/profile"
+                tools:ignore="ContentDescription" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:text="@string/user_name_name_here"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="24sp"
+            android:text="@string/email_sample_email_com"
+            android:textColor="#000000"/>
+    </LinearLayout>
+
+    <!-- Sign Out Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSignOut"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_out"
+        android:textSize="22sp"
+        android:fontFamily="@font/abrilfatface_regular"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="90dp"
+        android:background="@drawable/rounded_button"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:backgroundTint="@null"/>
+
+    <!-- Edit Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnEdit"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/abrilfatface_regular"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:minHeight="48dp"
+        android:text="@string/edit"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        app:backgroundTint="@null"
+        tools:ignore="TouchTargetSizeCheck" />
+
+</LinearLayout>

@@ -1,3 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">News app</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="user_info"><u>USER INFO.</u></string>
+    <string name="edit">Edit</string>
+    <string name="sign_out">SIgn Out</string>
+    <string name="email_sample_email_com">Email : sample@email.com</string>
+    <string name="user_name_name_here">User Name : name_here</string>
+    <string name="are_you_sure_you_want_to_sign_out"><b>Are you sure you want to sign out?</b></string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="enter_username">Edit Username</string>
+    <string name="username_warning">Username warning</string>
+    <string name="ok2">OK</string>
+    <string name="cancel2">Cancel</string>
+    <string name="enter_email">Edit Email</string>
 </resources>
