@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".SigninActivity">
+
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="189dp"
+        android:layout_height="179dp"
+        android:layout_marginTop="52dp"
+        android:contentDescription="@string/logo"
+        android:scaleType="centerInside"
+        android:src="@drawable/my_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardContainer"
+        android:layout_width="350dp"
+        android:layout_height="550dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginEnd="24dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="VisualLintBounds">
+
+        <LinearLayout
+            android:layout_width="355dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp"
+            tools:ignore="VisualLintBounds">
+
+            <!-- Segmented Buttons -->
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggleGroup"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="56dp"
+                app:selectionRequired="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLoginTab"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="38dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/purple_500"
+                    android:text="@string/log_in"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSignupTab"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="26dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:text="@string/sign_up"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <!-- Username Field -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/usernameField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/baseline_person_24"
+                    android:drawableTint="#868794"
+                    android:hint="@string/username"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:textColorHint="#757575" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Password Field -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="@string/password"
+                    android:drawableEnd="@drawable/pw"
+                    android:drawableTint="#868794"
+                    android:hint="@string/password"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:minHeight="48dp"
+                    android:textColorHint="#757575" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Log in Button -->
+            <Button
+                android:id="@+id/loginButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="64dp"
+                android:backgroundTint="@color/purple_500"
+                android:text="@string/log_in"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
