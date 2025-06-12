@@ -9,24 +9,12 @@
     android:background="@drawable/devinfo_bg">
 
     <!-- Header Title -->
-    <ImageButton
-        android:id="@+id/back_button"
-        android:layout_width="31dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/desc_back"
-        android:src="@drawable/back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TouchTargetSizeCheck,RedundantDescriptionCheck,SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/headerTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/abrilfatface_regular"
         android:text="@string/dev_info"
         android:textColor="#000000"
@@ -41,7 +29,7 @@
         android:id="@+id/profileImageCard"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         app:cardCornerRadius="75dp"
         app:cardElevation="4dp"
         app:cardBackgroundColor="#B0B0B0"
@@ -107,7 +95,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="12dp"
+                android:paddingBottom="11dp"
                 android:text="@string/department_ict"
                 android:textColor="#000000"
                 android:textSize="24sp" />
@@ -118,7 +106,7 @@
         android:id="@+id/versionLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="15dp"
         android:text="@string/version_v2_1_0"
         android:textColor="#7A7A7A"
         android:textSize="22sp"
@@ -143,7 +131,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/versionLabel"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.92" />
+        app:layout_constraintVertical_bias="0.95" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

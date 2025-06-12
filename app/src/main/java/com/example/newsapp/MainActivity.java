@@ -1,7 +1,7 @@
 package com.example.newsapp;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -16,11 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.*;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
@@ -29,7 +25,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -38,9 +33,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
 
-    @SuppressLint({"MissingInflatedId", "ClickableViewAccessibility"})
+    @SuppressLint("ClickableViewAccessibility")
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -51,19 +46,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // Set up the drawer toggle for the END (right) drawer
-        drawerToggle = new ActionBarDrawerToggle(
-                this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav);
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav);
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
 
-        // Show hamburger icon
-        if(getSupportActionBar() != null){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeButtonEnabled(true);
-        }
-
-        // Hamburger button click opens/closes the END drawer
         ImageButton hamburger = findViewById(R.id.hamburger);
         if (hamburger != null) {
             hamburger.setOnClickListener(v -> {
@@ -75,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             });
         }
 
-        // ... (all your existing initialization code for buttons, scroll, etc.)
         ImageButton sport_button = findViewById(R.id.sport_button);
         ImageButton education_button = findViewById(R.id.education_button);
         ImageButton global_button = findViewById(R.id.global_button);
@@ -84,76 +69,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setScaleOnTouch(education_button);
         setScaleOnTouch(global_button);
 
-        if (sport_button != null) {
-            sport_button.setOnClickListener(v -> fetchNewsFromCategory("Sports"));
-        }
-        if (education_button != null) {
-            education_button.setOnClickListener(v -> fetchNewsFromCategory("Academic"));
-        }
-        if (global_button != null) {
-            global_button.setOnClickListener(v -> fetchNewsFromCategory("Events"));
-        }
-
-        ImageButton imageNewYear = findViewById(R.id.imageNewYear);
-        ImageButton imageSiyo = findViewById(R.id.imageSiyo);
-        ImageButton imageTechbash = findViewById(R.id.imageTechbash);
-        ImageButton imageGameday = findViewById(R.id.imageGameday);
-        ImageButton imageNenayathra = findViewById(R.id.imageNenayathra);
-        ImageButton imageWorkshop = findViewById(R.id.imageWorkshop);
-
-        if (imageNewYear != null) {
-            imageNewYear.setOnClickListener(v -> fetchNewsFromSubCategory("Events", "newyr"));
-        }
-        if (imageSiyo != null) {
-            imageSiyo.setOnClickListener(v -> fetchNewsFromSubCategory("Events", "siyo"));
-        }
-        if (imageTechbash != null) {
-            imageTechbash.setOnClickListener(v -> fetchNewsFromSubCategory("Sports", "techbash"));
-        }
-        if (imageGameday != null) {
-            imageGameday.setOnClickListener(v -> fetchNewsFromSubCategory("Sports", "gameday"));
-        }
-        if (imageNenayathra != null) {
-            imageNenayathra.setOnClickListener(v -> fetchNewsFromSubCategory("Academic", "nenayathra"));
-        }
-        if (imageWorkshop != null) {
-            imageWorkshop.setOnClickListener(v -> fetchNewsFromSubCategory("Academic", "workshop"));
-        }
-
-        fetchNewsFromFirebase();
-
-        ImageButton backButton = findViewById(R.id.back_button);
-        setScaleOnTouch(backButton);
-
-        if (backButton != null) {
-            backButton.setOnClickListener(view -> fetchNewsFromFirebase());
-        }
-
-        horizontalScrollView = findViewById(R.id.horizontalScrollView2);
-        linearLayout = findViewById(R.id.linearLayoutInsideScroll);
-
-        if (horizontalScrollView != null && linearLayout != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                horizontalScrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-                    int scrollViewCenterX = scrollX + horizontalScrollView.getWidth() / 2;
-                    for (int i = 0; i < linearLayout.getChildCount(); i++) {
-                        View child = linearLayout.getChildAt(i);
-                        int childCenterX = child.getLeft() + child.getWidth() / 2;
-                        int distance = Math.abs(scrollViewCenterX - childCenterX);
-                        float maxDistance = horizontalScrollView.getWidth() / 2f;
-                        float scale = 1f - (distance / maxDistance) * 0.3f;
-                        if (scale < 0.7f) scale = 0.7f;
-                        child.setScaleX(scale);
-                        child.setScaleY(scale);
-                        child.setAlpha(scale);
-                    }
-                });
-            }
-            horizontalScrollView.post(() -> {
-                int scrollX = horizontalScrollView.getScrollX();
-                horizontalScrollView.setScrollX(scrollX);
-            });
-        }
+        sport_button.setOnClickListener(v -> fetchNewsFromCategory("Sports"));
+        education_button.setOnClickListener(v -> fetchNewsFromCategory("Academic"));
+        global_button.setOnClickListener(v -> fetchNewsFromCategory("Events"));
 
         setupCardTouchEffect(R.id.imageNewYear, R.id.overlayNewYear);
         setupCardTouchEffect(R.id.imageSiyo, R.id.overlaySiyo);
@@ -161,37 +79,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setupCardTouchEffect(R.id.imageGameday, R.id.overlayGameday);
         setupCardTouchEffect(R.id.imageNenayathra, R.id.overlayNenayathra);
         setupCardTouchEffect(R.id.imageWorkshop, R.id.overlayWorkshop);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (drawerToggle != null && drawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        findViewById(R.id.imageNewYear).setOnClickListener(v -> fetchNewsFromSubCategory("Events", "newyr"));
+        findViewById(R.id.imageSiyo).setOnClickListener(v -> fetchNewsFromSubCategory("Events", "siyo"));
+        findViewById(R.id.imageTechbash).setOnClickListener(v -> fetchNewsFromSubCategory("Sports", "techbash"));
+        findViewById(R.id.imageGameday).setOnClickListener(v -> fetchNewsFromSubCategory("Sports", "gameday"));
+        findViewById(R.id.imageNenayathra).setOnClickListener(v -> fetchNewsFromSubCategory("Academic", "nenayathra"));
+        findViewById(R.id.imageWorkshop).setOnClickListener(v -> fetchNewsFromSubCategory("Academic", "workshop"));
+
+        ImageButton backButton = findViewById(R.id.back_button);
+        setScaleOnTouch(backButton);
+        backButton.setOnClickListener(view -> fetchNewsFromFirebase());
+
+        horizontalScrollView = findViewById(R.id.horizontalScrollView2);
+        linearLayout = findViewById(R.id.linearLayoutInsideScroll);
+
+        horizontalScrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+            int centerX = scrollX + horizontalScrollView.getWidth() / 2;
+            for (int i = 0; i < linearLayout.getChildCount(); i++) {
+                View child = linearLayout.getChildAt(i);
+                int childCenterX = child.getLeft() + child.getWidth() / 2;
+                float distance = Math.abs(centerX - childCenterX);
+                float scale = 1f - (distance / (horizontalScrollView.getWidth() / 2f)) * 0.3f;
+                scale = Math.max(scale, 0.7f);
+                child.setScaleX(scale);
+                child.setScaleY(scale);
+                child.setAlpha(scale);
+            }
+        });
+
+        fetchNewsFromFirebase();
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        drawerLayout.closeDrawer(GravityCompat.START);
-
-        int id = item.getItemId();
-
-        // Uncomment and update these lines after merging the branches and having the activities!
-        // if (id == R.id.nav_devinfo) {
-        //     Intent intent = new Intent(MainActivity.this, DevInfoActivity.class);
-        //     startActivity(intent);
-        //     return true;
-        // }
-
-        // if (id == R.id.nav_userinfo) {
-        //     Intent intent = new Intent(MainActivity.this, UserInfoActivity.class);
-        //     startActivity(intent);
-        //     return true;
-        // }
-
+        drawerLayout.closeDrawer(GravityCompat.END);
+        if (item.getItemId() == R.id.nav_devinfo) {
+            startActivity(new Intent(MainActivity.this, DevInfo.class));
+        }
         return true;
     }
+
 
     @Override
     public void onBackPressed() {
@@ -206,14 +134,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void setScaleOnTouch(View view) {
         if (view == null) return;
         view.setOnTouchListener((v, event) -> {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                    v.animate().scaleX(0.85f).scaleY(0.85f).setDuration(120).start();
-                    break;
-                case MotionEvent.ACTION_UP:
-                case MotionEvent.ACTION_CANCEL:
-                    v.animate().scaleX(1.0f).scaleY(1.0f).setDuration(120).start();
-                    break;
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                v.animate().scaleX(0.85f).scaleY(0.85f).setDuration(120).start();
+            } else if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
+                v.animate().scaleX(1f).scaleY(1f).setDuration(120).start();
             }
             return false;
         });
@@ -222,34 +146,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void fetchNewsFromFirebase() {
         newsContentLayout = findViewById(R.id.news_container);
         DatabaseReference newsRef = FirebaseDatabase.getInstance().getReference("News");
+
         newsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    newsContentLayout.removeAllViews();
-                    for (DataSnapshot categorySnap : snapshot.getChildren()) {
-                        for (DataSnapshot newsSnap : categorySnap.getChildren()) {
-                            NewsItem item = newsSnap.getValue(NewsItem.class);
-
-                            if (item != null) {
-                                View cardView = LayoutInflater.from(MainActivity.this)
-                                        .inflate(R.layout.news_card, newsContentLayout, false);
-
-                                TextView titleText = cardView.findViewById(R.id.news_title);
-                                TextView dateText = cardView.findViewById(R.id.news_date);
-                                TextView descriptionText = cardView.findViewById(R.id.news_description);
-                                ImageView imageView = cardView.findViewById(R.id.news_image);
-
-                                titleText.setText(item.title);
-                                dateText.setText(item.date);
-                                descriptionText.setText(item.content);
-                                Picasso.get().load(item.imageurl).into(imageView);
-
-                                cardView.setOnClickListener(v -> Toast.makeText(MainActivity.this, item.title, Toast.LENGTH_SHORT).show());
-
-                                newsContentLayout.addView(cardView);
-                            }
-                        }
+                newsContentLayout.removeAllViews();
+                for (DataSnapshot categorySnap : snapshot.getChildren()) {
+                    for (DataSnapshot newsSnap : categorySnap.getChildren()) {
+                        NewsItem item = newsSnap.getValue(NewsItem.class);
+                        addNewsCard(item);
                     }
                 }
             }
@@ -271,24 +176,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 newsContentLayout.removeAllViews();
                 for (DataSnapshot newsSnap : snapshot.getChildren()) {
                     NewsItem item = newsSnap.getValue(NewsItem.class);
-                    if (item != null) {
-                        View cardView = LayoutInflater.from(MainActivity.this)
-                                .inflate(R.layout.news_card, newsContentLayout, false);
-
-                        TextView titleText = cardView.findViewById(R.id.news_title);
-                        TextView dateText = cardView.findViewById(R.id.news_date);
-                        TextView descriptionText = cardView.findViewById(R.id.news_description);
-                        ImageView imageView = cardView.findViewById(R.id.news_image);
-
-                        titleText.setText(item.title);
-                        dateText.setText(item.date);
-                        descriptionText.setText(item.content);
-                        Picasso.get().load(item.imageurl).into(imageView);
-
-                        cardView.setOnClickListener(v -> Toast.makeText(MainActivity.this, item.title, Toast.LENGTH_SHORT).show());
-
-                        newsContentLayout.addView(cardView);
-                    }
+                    addNewsCard(item);
                 }
             }
 
@@ -301,39 +189,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void fetchNewsFromSubCategory(String parentCategory, String subCategory) {
         newsContentLayout = findViewById(R.id.news_container);
-        DatabaseReference dbRef = FirebaseDatabase.getInstance()
-                .getReference("News").child(parentCategory).child(subCategory);
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("News").child(parentCategory).child(subCategory);
 
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 newsContentLayout.removeAllViews();
                 NewsItem item = snapshot.getValue(NewsItem.class);
-                if (item != null) {
-                    View cardView = LayoutInflater.from(MainActivity.this)
-                            .inflate(R.layout.news_card, newsContentLayout, false);
-
-                    TextView titleText = cardView.findViewById(R.id.news_title);
-                    TextView dateText = cardView.findViewById(R.id.news_date);
-                    TextView descriptionText = cardView.findViewById(R.id.news_description);
-                    ImageView imageView = cardView.findViewById(R.id.news_image);
-
-                    titleText.setText(item.title);
-                    dateText.setText(item.date);
-                    descriptionText.setText(item.content);
-                    Picasso.get().load(item.imageurl).into(imageView);
-
-                    cardView.setOnClickListener(v -> Toast.makeText(MainActivity.this, item.title, Toast.LENGTH_SHORT).show());
-
-                    newsContentLayout.addView(cardView);
-                }
+                addNewsCard(item);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("Firebase", "Error loading news", error.toException());
+                Log.e("Firebase", "Error loading subcategory", error.toException());
             }
         });
+    }
+
+    private void addNewsCard(NewsItem item) {
+        if (item == null) return;
+
+        View cardView = LayoutInflater.from(MainActivity.this).inflate(R.layout.news_card, newsContentLayout, false);
+        ((TextView) cardView.findViewById(R.id.news_title)).setText(item.title);
+        ((TextView) cardView.findViewById(R.id.news_date)).setText(item.date);
+        ((TextView) cardView.findViewById(R.id.news_description)).setText(item.content);
+        Picasso.get().load(item.imageurl).into((ImageView) cardView.findViewById(R.id.news_image));
+
+        cardView.setOnClickListener(v -> Toast.makeText(MainActivity.this, item.title, Toast.LENGTH_SHORT).show());
+        newsContentLayout.addView(cardView);
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -343,15 +226,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (imageButton != null && overlay != null) {
             imageButton.setOnTouchListener((v, event) -> {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        overlay.setVisibility(View.VISIBLE);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                    case MotionEvent.ACTION_CANCEL:
-                        overlay.setVisibility(View.GONE);
-                        break;
-                }
+                overlay.setVisibility(event.getAction() == MotionEvent.ACTION_DOWN ? View.VISIBLE : View.GONE);
                 return false;
             });
         }

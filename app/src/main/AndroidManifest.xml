@@ -30,7 +30,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".SigninActivity" />
         <activity android:name=".SignupActivity" />
-        <activity android:name=".dev_nfo" /> 
+        <activity android:name=".DevInfo" />
 
     </application>
 

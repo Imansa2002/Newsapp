@@ -1,14 +1,13 @@
 <resources>
     <string name="app_name">News app</string>
-    <string name="dev_info">DEV INFO.</string>
+    <string name="dev_info"><u>DEV INFO.</u></string>
     <string name="exit">Exit</string>
     <string name="version_v2_1_0">Version : v2.1.0</string>
-    <string name="personal_statement_this_app_was_created_to_stay_updated_with_the_latest_faculty_announcements_events_and_academic_news_it_helps_to_stay_informed_and_connected">
-        Personal Statement: This app was created to stay updated with the latest faculty announcements, events, and academic news. It helps to stay informed and connected.
+    <string name="personal_statement_this_app_was_created_to_stay_updated_with_the_latest_faculty_announcements_events_and_academic_news_it_helps_to_stay_informed_and_connected"><b>Personal Statement:</b> This app was created to stay updated with the latest faculty announcements, events, and academic news. It helps to stay informed and connected.
     </string>
-    <string name="student_number_2022t01591">Student Number: 2022t01591</string>
-    <string name="department_ict">Department: ICT</string>
-    <string name="name_imansa_gayathmi">Name: Imansa Gayathmi</string>
+    <string name="student_number_2022t01591"><b>Student Number:</b> 2022t01591</string>
+    <string name="department_ict"><b>Department:</b> ICT</string>
+    <string name="name_imansa_gayathmi"><b>Name:</b> Imansa Gayathmi</string>
     <string name="desc_back">Back button icon</string>
     <string name="browse_news">Browse News</string>
     <string name="desc_newspaper">Newspaper icon</string>
@@ -20,7 +19,7 @@
     <string name="desc_workshop">Workshop event image</string>
     <string name="desc_slider_image">Slider image</string>
     <string name="app_logo">App Logo</string>
-    <string name="tech_feed">Tech Feed</string>
+    <string name="tech_feed">FOT | UOC</string>
     <string name="news_description">news description.</string>
     <string name="education">Education</string>
     <string name="event">event</string>
@@ -32,7 +31,6 @@
     <string name="logout">Logout</string>
     <string name="devinfo">DevInfo.</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="devinfo_fragment">Devinfo Fragment</string>
     <string name="sign_up2">Sign Up</string>
     <string name="logo">Logo</string>
     <string name="log_in">Log In</string>
