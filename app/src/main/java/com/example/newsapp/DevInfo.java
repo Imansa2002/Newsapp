@@ -26,8 +26,8 @@ public class DevInfo extends AppCompatActivity {
             return insets;
         });
 
-        ImageButton backButton = findViewById(R.id.back_button);
-        setScaleOnTouch(backButton);
+        //ImageButton backButton = findViewById(R.id.back_button);
+        //setScaleOnTouch(backButton);
 
         // Set up the EXIT button to go to MainActivity
         Button exitButton = findViewById(R.id.exitButton);

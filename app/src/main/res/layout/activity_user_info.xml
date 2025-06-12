@@ -10,13 +10,26 @@
     android:padding="20dp"
     android:background="@drawable/userinfo_bg">
 
+    <!-- Back Button at top-left -->
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/desc_back"
+        android:src="@drawable/back"
+        tools:ignore="TouchTargetSizeCheck,RedundantDescriptionCheck" />
+
     <!-- Title -->
     <TextView
         android:id="@+id/userInfoTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/user_info"
-        android:paddingTop="40dp"
+        android:paddingTop="60dp"
         android:fontFamily="@font/abrilfatface_regular"
         android:textSize="26sp"
         android:textColor="#000000"
@@ -28,6 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingTop="50dp"
         android:gravity="center_horizontal"
         android:layout_marginTop="30dp">
 

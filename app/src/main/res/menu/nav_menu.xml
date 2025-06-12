@@ -12,7 +12,7 @@
         <item
             android:id="@+id/nav_userinfo"
             android:icon="@drawable/userinfo"
-            android:title="@string/user_info"/>
+            android:title="@string/userinfo"/>
 
     </group>
 

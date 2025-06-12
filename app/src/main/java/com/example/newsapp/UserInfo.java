@@ -8,8 +8,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.content.SharedPreferences;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.content.Intent;
@@ -26,6 +26,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 
@@ -55,6 +57,14 @@ public class UserInfo extends AppCompatActivity {
             return insets;
         });
 
+        ImageButton backButton = findViewById(R.id.back_button);
+        setScaleOnTouch(backButton);
+        backButton.setOnClickListener(view -> {
+            Intent intent = new Intent(UserInfo.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
         profileLayout = findViewById(R.id.profile_layout);
         Button btnEdit = findViewById(R.id.btnEdit);
         Button btnSignOut = findViewById(R.id.btnSignOut);
@@ -71,6 +81,10 @@ public class UserInfo extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         loadUserInfo();
+    }
+
+    private void setScaleOnTouch(ImageButton backButton) {
+        // Optionally implement touch scaling effect here
     }
 
     private void checkPermissionAndOpenImageChooser() {
@@ -115,10 +129,9 @@ public class UserInfo extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void loadUserInfo() {
-        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-        String uid = prefs.getString("uid", null);
-
-        if (uid != null) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String uid = user.getUid();
             userListener = db.collection("users").document(uid)
                     .addSnapshotListener(this, (snapshot, error) -> {
                         if (error != null) {
@@ -129,14 +142,27 @@ public class UserInfo extends AppCompatActivity {
                             String name = snapshot.getString("username");
                             String email = snapshot.getString("email");
 
-                            nameTextView.setText("Username : " + name);
-                            emailTextView.setText("Email : " + email);
+                            if (name == null || name.isEmpty()) {
+                                nameTextView.setText("User Name : (not set)");
+                            } else {
+                                nameTextView.setText("User Name : " + name);
+                            }
+
+                            if (email == null || email.isEmpty()) {
+                                emailTextView.setText("Email : (not set)");
+                            } else {
+                                emailTextView.setText("Email : " + email);
+                            }
                         } else {
                             Toast.makeText(this, "User info not found", Toast.LENGTH_SHORT).show();
+                            nameTextView.setText("User Name : (not found)");
+                            emailTextView.setText("Email : (not found)");
                         }
                     });
         } else {
-            Toast.makeText(this, "No user ID found in preferences", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No user is logged in", Toast.LENGTH_SHORT).show();
+            nameTextView.setText("User Name : (not logged in)");
+            emailTextView.setText("Email : (not logged in)");
         }
     }
 
@@ -162,10 +188,9 @@ public class UserInfo extends AppCompatActivity {
         TextView warningText = dialog.findViewById(R.id.username_warning);
         warningText.setVisibility(View.GONE);
 
-        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-        String uid = prefs.getString("uid", null);
-
-        if (uid != null) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String uid = user.getUid();
             db.collection("users").document(uid).get().addOnSuccessListener(snapshot -> {
                 if (snapshot.exists()) {
                     String existingUsername = snapshot.getString("username");
@@ -177,35 +202,24 @@ public class UserInfo extends AppCompatActivity {
                     editEmail.setTextColor(Color.GRAY);
                 }
             }).addOnFailureListener(e -> Toast.makeText(UserInfo.this, "Failed to fetch user data", Toast.LENGTH_SHORT).show());
-        }
 
-        cancel.setOnClickListener(v -> dialog.dismiss());
+            ok.setOnClickListener(v -> {
+                String newUsername = editUsername.getText().toString().trim();
+                String newEmail = editEmail.getText().toString().trim();
 
-        ok.setOnClickListener(v -> {
-            // Declare and assign before use
-            String newUsername = editUsername.getText().toString().trim();
-            String newEmail = editEmail.getText().toString().trim();
+                if (newUsername.isEmpty() || newEmail.isEmpty()) {
+                    warningText.setVisibility(View.VISIBLE);
+                    warningText.setText("Please fill in all fields");
+                    return;
+                } else {
+                    warningText.setVisibility(View.GONE);
+                }
 
-            if (newUsername.isEmpty() || newEmail.isEmpty()) {
-                warningText.setVisibility(View.VISIBLE);
-                warningText.setText("Please fill in all fields");
-                return;
-            } else {
-                warningText.setVisibility(View.GONE);
-            }
-
-            new android.os.Handler().postDelayed(() -> {
-                if (uid != null) {
+                new android.os.Handler().postDelayed(() -> {
                     db.collection("users").document(uid)
                             .update("username", newUsername, "email", newEmail)
                             .addOnSuccessListener(aVoid -> {
-                                // Update SharedPreferences
-                                SharedPreferences.Editor editor = prefs.edit();
-                                editor.putString("username", newUsername);
-                                editor.putString("email", newEmail);
-                                editor.apply();
-
-                                nameTextView.setText("Username : " + newUsername);
+                                nameTextView.setText("User Name : " + newUsername);
                                 emailTextView.setText("Email : " + newEmail);
 
                                 Toast.makeText(UserInfo.this, "Profile updated successfully", Toast.LENGTH_SHORT).show();
@@ -216,10 +230,11 @@ public class UserInfo extends AppCompatActivity {
                                 warningText.setText("Failed to update profile");
                                 Toast.makeText(UserInfo.this, "Failed to update profile", Toast.LENGTH_SHORT).show();
                             });
-                }
-            }, 1000); // 1-second delay for effect
-        });
+                }, 1000); // 1-second delay for effect
+            });
+        }
 
+        cancel.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
     }
 
@@ -235,15 +250,12 @@ public class UserInfo extends AppCompatActivity {
 
         cancel.setOnClickListener(v -> dialog.dismiss());
         ok.setOnClickListener(v -> {
-            SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.clear();
-            editor.apply();
+            FirebaseAuth.getInstance().signOut();
 
             Toast.makeText(this, "Signed out successfully", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
 
-            Intent intent = new Intent(UserInfo.this, MainActivity.class);
+            Intent intent = new Intent(UserInfo.this, SigninActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();

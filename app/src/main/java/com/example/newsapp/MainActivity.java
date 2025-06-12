@@ -3,6 +3,8 @@ package com.example.newsapp;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -116,19 +118,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.END);
         if (item.getItemId() == R.id.nav_devinfo) {
             startActivity(new Intent(MainActivity.this, DevInfo.class));
+        } else if (item.getItemId() == R.id.nav_userinfo) {
+            startActivity(new Intent(MainActivity.this, UserInfo.class));
         }
         return true;
     }
 
 
+
+    private boolean doubleBackToExitPressedOnce = false;
+
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
             drawerLayout.closeDrawer(GravityCompat.END);
         } else {
-            super.onBackPressed();
+            if (doubleBackToExitPressedOnce) {
+                // User pressed back twice, go to SigninActivity
+                Intent intent = new Intent(MainActivity.this, SigninActivity.class);
+                startActivity(intent);
+                finish();
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Press back again to sign out", Toast.LENGTH_SHORT).show();
+
+            new Handler(Looper.getMainLooper()).postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
         }
     }
+
+
 
     @SuppressLint("ClickableViewAccessibility")
     private void setScaleOnTouch(View view) {
