@@ -27,7 +27,8 @@
         </activity>
 
         <!-- Other activities -->
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity" android:exported="false" />
+        <activity android:name=".UserInfo" />
         <activity android:name=".SigninActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".DevInfo" />
