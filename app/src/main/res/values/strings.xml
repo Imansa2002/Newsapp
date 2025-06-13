@@ -1,3 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">News app</string>
+    
+    <!-- User Info Strings -->
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="user_info"><u>USER INFO.</u></string>
+    <string name="edit">Edit</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="email_sample_email_com">Email : sample@email.com</string>
+    <string name="user_name_name_here">Username : name_here</string>
+    <string name="are_you_sure_you_want_to_sign_out"><b>Are you sure you want to sign out?</b></string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="enter_username">Edit Username</string>
+    <string name="username_warning">Username warning</string>
+    <string name="ok2">OK</string>
+    <string name="cancel2">Cancel</string>
+    <string name="enter_email">Edit Email</string>
+    
+    <!-- Dev Info Strings -->
+    <string name="dev_info"><u>DEV INFO.</u></string>
+    <string name="exit">Exit</string>
+    <string name="version_v2_1_0">Version : v2.1.0</string>
+    <string name="personal_statement_this_app_was_created_to_stay_updated_with_the_latest_faculty_announcements_events_and_academic_news_it_helps_to_stay_informed_and_connected"><b>Personal Statement:</b> This app was created to stay updated with the latest faculty announcements, events, and academic news. It helps to stay informed and connected.</string>
+    <string name="student_number_2022t01591"><b>Student Number:</b> 2022t01591</string>
+    <string name="department_ict"><b>Department:</b> ICT</string>
+    <string name="name_imansa_gayathmi"><b>Name:</b> Imansa Gayathmi</string>
+    
+    <!-- Navigation and UI Strings -->
+    <string name="desc_back">Back button icon</string>
+    <string name="browse_news">Browse News</string>
+    <string name="desc_newspaper">Newspaper icon</string>
+    <string name="desc_newyr">New year event image</string>
+    <string name="desc_siyo">Siyo event image</string>
+    <string name="desc_techbash">Tech Bash news image</string>
+    <string name="desc_gameday">Gameday news image</string>
+    <string name="desc_nenayathra">Nenayathra news image</string>
+    <string name="desc_workshop">Workshop event image</string>
+    <string name="desc_slider_image">Slider image</string>
+    <string name="app_logo">App Logo</string>
+    <string name="tech_feed">FOT | UOC</string>
+    <string name="news_description">news description.</string>
+    <string name="education">Education</string>
+    <string name="event">event</string>
+    <string name="news_title">News Title</string>
+    <string name="description">This is the description of the news item. It gives more details.</string>
+    <string name="open_nav">Open Navigation Drawer</string>
+    <string name="close_nav">Close Navigation Drawer</string>
+    <string name="logout">Logout</string>
+    <string name="devinfo">DevInfo.</string>
+    <string name="userinfo">UserInfo.</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    
+    <!-- Authentication Strings -->
+    <string name="sign_up2">Sign Up</string>
+    <string name="logo">Logo</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>
